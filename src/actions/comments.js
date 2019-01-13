@@ -29,7 +29,6 @@ export function handleAddComment(newComment) {
     }
 }
 
-
 function getComments(comments) {
     return {
         type: GET_COMMENTS,
@@ -96,6 +95,6 @@ function decreaseCommentVote(comment) {
 export function handleDecreaseCommentVote(commentId) {
     return (dispatch) => {
         return DecreaseCommentVotes(commentId)
-            .then(comment => dispatch(decreaseCommentVote(<comment></comment>)))
+            .then(comment => dispatch(decreaseCommentVote(comment)))
     }
 }

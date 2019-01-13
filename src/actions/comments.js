@@ -8,7 +8,7 @@ import {
 } from "../services/api";
 
 export const ADD_COMMENT = 'ADD_COMMENT';
-export const GET_COMMENT = 'GET_COMMENT';
+export const GET_COMMENTS = 'GET_COMMENTS';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const EDIT_COMMENT = 'EDIT_COMMENT';
 export const INCREASE_COMMENT_VOTES = 'INCREASE_COMMENT';
@@ -32,7 +32,7 @@ export function handleAddComment(newComment) {
 
 function getComments(comments) {
     return {
-        type: GET_COMMENT,
+        type: GET_COMMENTS,
         comments
     }
 }
@@ -96,6 +96,6 @@ function decreaseCommentVote(comment) {
 export function handleDecreaseCommentVote(commentId) {
     return (dispatch) => {
         return DecreaseCommentVotes(commentId)
-            .then(comment => dispatch(decreaseCommentVote(comment)))
+            .then(comment => dispatch(decreaseCommentVote(<comment></comment>)))
     }
 }

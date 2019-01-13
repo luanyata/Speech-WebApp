@@ -10,9 +10,9 @@ import {
 export const ADD_POST = 'ADD_POST';
 export const EDIT_POST = 'EDIT_POST';
 export const GET_POST = 'GET_POST';
-export const DEL_POST = 'DEL_POST';
-export const INC_VOTE = 'INC_VOTE';
-export const DEC_VOTE = 'DEC_VOTE';
+export const DELETE_POST = 'DEL_POST';
+export const INCREASE_VOTE = 'INC_VOTE';
+export const DECREASE_VOTE = 'DEC_VOTE';
 
 
 function addPost(post) {
@@ -60,7 +60,7 @@ export function handleGetPost(postId) {
 
 function deletePost(post) {
     return {
-        type: DEL_POST,
+        type: DELETE_POST,
         post
     }
 }
@@ -74,7 +74,7 @@ export function handleDeletePost(postId) {
 
 function increaseVotes(post) {
     return {
-        type: INC_VOTE,
+        type: INCREASE_VOTE,
         post
     }
 }
@@ -88,7 +88,7 @@ export function handleIncVote(postId) {
 
 function decreaseVotes(post) {
     return {
-        type: DEC_VOTE,
+        type: DECREASE_VOTE,
         post
     }
 }

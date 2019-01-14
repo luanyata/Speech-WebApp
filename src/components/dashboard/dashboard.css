@@ -4,3 +4,13 @@
     background-color: #02af03;
 
 }
+#select-orderby-posts{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+#select-orderby-posts select{
+    width: 250px;
+    height: 40px;
+}

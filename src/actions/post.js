@@ -80,7 +80,6 @@ function increaseVotes(post) {
 }
 
 export function handleIncreaseVote(oldPost) {
-    console.log(oldPost, 'OldPost');
     return (dispatch) => {
         return IncreaseVotes(oldPost.id)
             .then(post => dispatch(increaseVotes(post)))

@@ -24,8 +24,7 @@ export default function (state = {}, action) {
         case EDIT_POST:
         case INCREASE_VOTE:
         case DECREASE_VOTE:
-            return state.map((post) =>
-                post.id === action.post.id ? action.post : post);
+            return action.post
 
         default:
             return state;

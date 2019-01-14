@@ -79,9 +79,10 @@ function increaseVotes(post) {
     }
 }
 
-export function handleIncVote(postId) {
+export function handleIncreaseVote(oldPost) {
+    console.log(oldPost, 'OldPost');
     return (dispatch) => {
-        return IncreaseVotes(postId)
+        return IncreaseVotes(oldPost.id)
             .then(post => dispatch(increaseVotes(post)))
     }
 }
@@ -93,9 +94,9 @@ function decreaseVotes(post) {
     }
 }
 
-export function handleDecVote(postId) {
+export function handleDecreaseVote(oldPost) {
     return (dispatch) => {
-        return DecreaseVotes(postId)
+        return DecreaseVotes(oldPost.id)
             .then(post => dispatch(decreaseVotes(post)))
     }
 }

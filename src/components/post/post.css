@@ -1,0 +1,46 @@
+.post {
+    border: 1px solid #807f80;
+    padding: 25px;
+    margin: 25px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.footer-post small {
+    margin: 10px;
+}
+
+.like {
+    color: #02af03;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.vote-score {
+    font-size: 15px;
+}
+
+
+.dislike {
+    color: #cb0000;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.tag-category {
+    background-color: #b4b3b4;
+    padding: 2px;
+    border-radius: 25px;
+}
+
+.comments {
+    margin: 10px 0 0 20px;
+}

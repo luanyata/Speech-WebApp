@@ -24,7 +24,7 @@ export default function (state = {}, action) {
         case EDIT_POST:
         case INCREASE_VOTE:
         case DECREASE_VOTE:
-            return action.post
+            return action.post;
 
         default:
             return state;

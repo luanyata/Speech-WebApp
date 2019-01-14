@@ -31,6 +31,7 @@ class Dashboard extends Component {
                         <option value='DATE'>Filtrar por Data</option>
                         <option value='VOTES'>Filtrar por Votos</option>
                     </select>
+                    <button>Criar Post</button>
                 </div>
 
 

@@ -5,7 +5,6 @@ import {handleAddPost} from "../../actions/post";
 
 class NewPost extends Component {
     handleInputChange = (field, value) => {
-        console.log(field, value);
         this.setState({
             [field]: value
         })
@@ -44,7 +43,7 @@ class NewPost extends Component {
                         rows='20'>
                     </textarea>
 
-                    <button>Submit</button>
+                    <button type='submit'>Submit</button>
                 </form>
             </div>
         )

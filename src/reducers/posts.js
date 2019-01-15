@@ -1,8 +1,16 @@
 import {GET_POSTS} from "../actions/posts";
-import {INCREASE_VOTE, DECREASE_VOTE} from "../actions/post";
+import {INCREASE_VOTE, DECREASE_VOTE, ADD_POST, GET_POST, DELETE_POST} from "../actions/post";
 
 export default function (state = {}, action) {
     switch (action.type) {
+        case ADD_POST:
+            return {
+                ...state,
+                ...state.posts,
+                [action.post.id]: action.post
+
+            };
+
         case GET_POSTS:
             switch (action.orderBy) {
                 case 'DATE':
@@ -12,6 +20,12 @@ export default function (state = {}, action) {
                 default:
                     return action.posts;
             }
+
+        case GET_POST:
+            return state.posts.filter(post => post.id === action.post.id);
+
+        case DELETE_POST:
+            return state.filter((post) => post.id !== action.post.id);
 
         case INCREASE_VOTE:
         case DECREASE_VOTE:

@@ -7,6 +7,8 @@ import {
     decreaseVotes as DecreaseVotes
 } from "../services/api";
 
+import {showLoading, hideLoading} from "react-redux-loading";
+
 export const ADD_POST = 'ADD_POST';
 export const EDIT_POST = 'EDIT_POST';
 export const GET_POST = 'GET_POST';
@@ -24,8 +26,12 @@ function addPost(post) {
 
 export function handleAddPost(newPost) {
     return (dispatch) => {
+
+        dispatch(showLoading());
+
         return AddPost(newPost)
             .then(post => dispatch(addPost(post)))
+            .then(() => dispatch(hideLoading()))
     }
 }
 

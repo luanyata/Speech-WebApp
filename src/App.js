@@ -5,6 +5,7 @@ import {handleInitialData} from "./actions/shared";
 import Dashboard from "./components/dashboard/dashboard";
 import LoadingBar from 'react-redux-loading'
 import NewPost from "./components/newPost/NewPost";
+import PostDetail from "./components/postDetail/postDetail";
 
 class App extends Component {
     componentDidMount() {
@@ -17,7 +18,7 @@ class App extends Component {
                 <LoadingBar/>
                 {this.props.loading === true
                     ? null
-                    : <NewPost/>}
+                    : <PostDetail match={{params: {id: '8xf0y6ziyjabvozdd253nd'}}}/>}
 
             </div>
         );

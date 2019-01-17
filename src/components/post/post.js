@@ -26,7 +26,6 @@ class Post extends Component {
 
         const {title, body, voteScore, commentCount, timestamp, category} = this.props.post;
 
-        console.log(this.props, 'post');
         return (
             <div className='post'>
                 <h3>{title}</h3>
@@ -47,11 +46,13 @@ class Post extends Component {
 
 function mapStateToProps({authedUser, posts}, {id}) {
 
-    const timestamp = new Date(posts[id].timestamp).toLocaleDateString();
-    posts[id].timestamp = timestamp;
+    let post = posts.find(post => post.id === id);
+
+    post.timestamp = new Date(post.timestamp).toLocaleDateString();
+
     return {
         authedUser,
-        post: posts[id]
+        post
     };
 }
 

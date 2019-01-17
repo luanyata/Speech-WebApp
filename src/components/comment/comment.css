@@ -1,0 +1,9 @@
+.comment {
+    border: 1px solid #807f80;
+    padding: 25px;
+    margin: 10px;
+    width: 70%;
+}
+.delete-comment{
+    cursor: pointer;
+}

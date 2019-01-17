@@ -19,13 +19,22 @@ export default function (state = {}, action) {
             return action.comments;
 
         case DELETE_COMMENT:
-            return state.filter((comment) => comment.id !== action.comment.id);
+            return {
+                ...state.map(comment => {
+                    if (comment.id === action.comment.id) {
+                        comment.deleted = true
+                    }
+                    return comment;
+                }).filter((comment) => comment.id !== action.comment.id)
+            };
 
         case EDIT_COMMENT:
         case INCREASE_COMMENT_VOTES:
         case DECREASE_COMMENT_VOTES:
-            return state.map((comment) =>
-                comment.id === action.comment.id ? action.comment : comment);
+            return {
+                ...state.map((comment) =>
+                    comment.id === action.comment.id ? action.comment : comment)
+            };
         default:
             return state
     }

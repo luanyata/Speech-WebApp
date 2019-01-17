@@ -35,7 +35,6 @@ class NewPost extends Component {
                         <option value=''>Selecione</option>
                         <option value='react'>React</option>
                         <option value='redux'>Redux</option>
-
                     </select>
                     <textarea
                         onChange={e => this.handleInputChange('body', e.target.value)}

@@ -28,7 +28,13 @@ class Comment extends Component {
 
     render() {
 
-        const {author, body, timestamp, voteScore} = this.props.comment;
+        console.log(this.props, 'Propsss');
+
+        const {comment, disableDelete} = this.props;
+
+        const {author, body, timestamp, voteScore} = comment;
+
+
         return (
             <div className='comment'>
                 <h3>{author}</h3>
@@ -37,9 +43,16 @@ class Comment extends Component {
                     <FaAngleUp data-like='like' onClick={this.handleLike} className='like'/>
                     <small className='vote-score'>{voteScore}</small>
                     <FaAngleDown onClick={this.handleDislike} className='dislike'/>
-                    <small>{timestamp}</small>
+                    <small>{new Intl.DateTimeFormat('en-GB', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: '2-digit'
+                    }).format(timestamp)}</small>
                 </div>
-                <FaTrash className='delete-comment' onClick={this.handleDelete}/>
+                <div hidden={disableDelete}>
+                    <FaTrash className='delete-comment' onClick={this.handleDelete}/>
+                </div>
+
             </div>
         )
     }
@@ -47,13 +60,13 @@ class Comment extends Component {
 
 
 function mapToStateProps({authedUser, posts, comments}, {id}) {
-
     let comment = comments[id];
 
-    comment.timestamp = new Date(comment.timestamp).toLocaleDateString();
+    let disableDelete = comment.author !== authedUser;
 
     return {
-        comment
+        comment,
+        disableDelete,
     }
 
 }

@@ -24,7 +24,6 @@ class CommentArea extends Component {
 }
 
 function mapToStateProps({posts, comments}, {id}) {
-    console.log(id,'idpost');
     return {
         idPost: id,
         commentIds: Object.keys(comments)

@@ -39,7 +39,11 @@ class Post extends Component {
                         <FaCommentDots className='comments'/>
                         <small>{commentCount}</small>
                         <small>category: <span className='tag-category'>{category}</span></small>
-                        <small>{timestamp}</small>
+                        <small>{new Intl.DateTimeFormat('en-GB', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: '2-digit'
+                        }).format(timestamp)}</small>
                     </div>
                 </div>
 
@@ -50,13 +54,7 @@ class Post extends Component {
 
 function mapStateToProps({authedUser, posts}, {id}) {
 
-    console.log('posts', posts);
-    console.log('id', id);
-
-
     const post = posts.find(post => post.id === id);
-
-    post.timestamp = new Date(post.timestamp).toLocaleDateString();
 
     return {
         authedUser,

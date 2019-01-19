@@ -80,7 +80,6 @@ function increaseCommentVote(comment) {
 
 export function handleIncreaseCommentVote(commentId) {
     return (dispatch) => {
-        console.log(commentId,'commentID');
         return IncreaseCommentVotes(commentId)
             .then(comment => dispatch(increaseCommentVote(comment)))
     }

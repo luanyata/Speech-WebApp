@@ -4,13 +4,7 @@ import {INCREASE_VOTE, DECREASE_VOTE, ADD_POST, GET_POST, DELETE_POST} from "../
 export default function (state = {}, action) {
     switch (action.type) {
         case ADD_POST:
-            return {
-                ...state,
-                ...state.posts,
-                [action.post.id]: action.post
-
-            };
-
+            return state.concat([action.post]);
         case GET_POSTS:
             switch (action.orderBy) {
                 case 'DATE':
@@ -22,7 +16,7 @@ export default function (state = {}, action) {
             }
 
         case GET_POST:
-            return state.posts.filter(post => post.id === action.post.id);
+            return state.filter(post => post.id === action.post.id);
 
         case DELETE_POST:
             return state.filter((post) => post.id !== action.post.id);

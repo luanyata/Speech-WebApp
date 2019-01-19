@@ -91,10 +91,7 @@ export const editPost = (post) =>
 export const getPostComments = (postId) =>
     fetch(`${url}/posts/${postId}/comments`, {headers})
         .then(res => res.json())
-        .then(data => {
-            console.log(data, 'data');
-            return data
-        })
+        .then(data =>  data)
         .catch(error => console.log(error));
 
 

@@ -31,7 +31,6 @@ class Dashboard extends Component {
                         <option value='DATE'>Filtrar por Data</option>
                         <option value='VOTES'>Filtrar por Votos</option>
                     </select>
-                    <button>Criar Post</button>
                 </div>
 
 
@@ -50,8 +49,8 @@ class Dashboard extends Component {
 
 function mapStateToProps({posts, categories}) {
     return {
-        postIds: Object.keys(posts)
-            .sort((a, b) => posts[b].timestamp - posts[a].timestamp),
+        postIds: Object.keys(posts).map(key => posts[key].id)
+            .sort((a, b) => (b.timestamp - a.timestamp)),
         categoryIds: Object.keys(categories)
     }
 }

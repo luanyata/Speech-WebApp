@@ -1,18 +1,25 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import './NewPost.css'
-import {handleAddPost} from "../../actions/post";
+import {handleAddPost} from "../../actions/post"
+import {Redirect} from 'react-router-dom'
 
 class NewPost extends Component {
+
+    state = {
+        toHome: false
+    };
+
+
     handleInputChange = (field, value) => {
         this.setState({
-            [field]: value
+            [field]: value,
         })
     };
 
     onSubmit = (e) => {
         e.preventDefault();
-        const {title, category, body} = this.state;
+        const {id, title, category, body} = this.state;
         const newPost = {
             id: Math.random().toString(36).substr(-8),
             timestamp: Date.now(),
@@ -22,9 +29,20 @@ class NewPost extends Component {
             category
         };
         this.props.dispatch(handleAddPost(newPost));
+
+        this.setState(() => ({
+            toHome: !id
+        }))
     };
 
     render() {
+
+        const {toHome} = this.state;
+
+        if (toHome) {
+            return <Redirect to='/'/>
+        }
+
         return (
             <div id='new-post'>
                 <h3>New Post</h3>

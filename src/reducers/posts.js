@@ -1,5 +1,5 @@
 import {GET_POSTS} from "../actions/posts";
-import {INCREASE_VOTE, DECREASE_VOTE, ADD_POST, GET_POST, DELETE_POST} from "../actions/post";
+import {INCREASE_VOTE, DECREASE_VOTE, ADD_POST, GET_POST, DELETE_POST, EDIT_POST} from "../actions/post";
 
 export default function (state = {}, action) {
     switch (action.type) {
@@ -21,6 +21,7 @@ export default function (state = {}, action) {
         case DELETE_POST:
             return state.filter((post) => post.id !== action.post.id);
 
+        case EDIT_POST:
         case INCREASE_VOTE:
         case DECREASE_VOTE:
             return state.map(post =>

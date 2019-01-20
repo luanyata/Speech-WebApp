@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {FaAngleDown, FaAngleUp, FaTrash} from "react-icons/fa";
+import {FaAngleDown, FaAngleUp, FaEdit, FaTrash} from "react-icons/fa";
 import {handleDecreaseCommentVote, handleDeleteComment, handleIncreaseCommentVote} from "../../actions/comments";
 import './comment.css'
+import {Link} from "react-router-dom";
 
 
 class Comment extends Component {
@@ -28,9 +29,7 @@ class Comment extends Component {
 
     render() {
 
-        console.log(this.props, 'Propsss');
-
-        const {comment, disableDelete} = this.props;
+        const {comment, disableAction, handleEditComment} = this.props;
 
         const {author, body, timestamp, voteScore} = comment;
 
@@ -49,10 +48,12 @@ class Comment extends Component {
                         day: '2-digit'
                     }).format(timestamp)}</small>
                 </div>
-                <div hidden={disableDelete}>
+                <div hidden={disableAction}>
                     <FaTrash className='delete-comment' onClick={this.handleDelete}/>
                 </div>
-
+                <Link to={`/edit-comment/${comment.id}`} hidden={disableAction}>
+                    <FaEdit onClick={() => handleEditComment(comment)}/>
+                </Link>
             </div>
         )
     }
@@ -62,11 +63,11 @@ class Comment extends Component {
 function mapToStateProps({authedUser, posts, comments}, {id}) {
     let comment = comments[id];
 
-    let disableDelete = comment.author !== authedUser;
+    let disableAction = comment.author !== authedUser;
 
     return {
         comment,
-        disableDelete,
+        disableAction,
     }
 
 }

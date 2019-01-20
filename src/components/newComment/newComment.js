@@ -1,58 +1,87 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import './newComment.css'
-import {handleAddComment} from "../../actions/comments";
+import {handleAddComment, handleEditComment} from "../../actions/comments";
 
 class NewComment extends Component {
 
     state = {
-        text: ''
+        id: '',
+        body: '',
+        author: '',
+        timestamp: '',
+        parentId: '',
     };
 
-    handleChange = (e) => {
-        let text = e.target.value;
 
-        this.setState(() => ({
-                text
+    componentDidMount() {
+        console.log(this.props.comment, ' comment props');
+
+        if (this.props.comment) {
+            const {id, body, author, timestamp, parentId} = this.props.comment;
+
+            this.setState({
+                id,
+                body,
+                author,
+                timestamp,
+                parentId
+            })
+        }
+    }
+
+    handleChange = (e) => {
+        this.setState({
+                body: e.target.value
             }
-        ))
+        )
     };
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const {text} = this.state;
+        const {id, body} = this.state;
 
-        console.log(this.props, 'new Comment');
+        if (id) {
+            const editComment = {
+                ...this.state,
+                timestamp: Date.now()
+            };
 
-        const {dispatch, authedUser, idPost} = this.props;
+            this.props.dispatch(handleEditComment(editComment))
+        } else {
+            let comment = {
+                id: Math.random().toString(36).substr(-8),
+                timestamp: Date.now(),
+                body,
+                author: this.props.authedUser,
+                parentId: this.props.idPost
+            };
 
-        let comment = {
-            id: Math.random().toString(36).substr(-8),
-            timestamp: Date.now(),
-            body: text,
-            author: authedUser,
-            parentId: idPost
-        };
+            this.props.dispatch(handleAddComment(comment))
+                .then(() => {
+                    comment = {};
+                    this.setState(() => ({
+                        text: ''
+                    }))
+                });
+        }
 
-        dispatch(handleAddComment(comment))
-            .then(() => {
-                comment = {};
-                this.setState(() => ({
-                    text: ''
-                }))
-            });
+        this.setState({
+            id: '',
+            body: '',
+            author: '',
+            timestamp: '',
+            parentId: '',
+        })
     };
 
     render() {
-
-        const {text} = this.state;
-
         return (
             <div id='new-comment'>
                 <form onSubmit={this.handleSubmit}>
                     <textarea rows='20'
                               placeholder='Add Comment'
-                              value={text}
+                              value={this.state.body}
                               onChange={this.handleChange}
                     />
                     <button>Submit</button>
@@ -62,11 +91,10 @@ class NewComment extends Component {
     }
 }
 
-function mapToStateProps({comments, authedUser}, {idPost}) {
+function mapToStateProps({authedUser, comment}, {idPost}) {
     return {
         idPost,
-        comments,
-        authedUser
+        authedUser,
     }
 }
 

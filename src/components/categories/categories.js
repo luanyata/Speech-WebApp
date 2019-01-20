@@ -1,15 +1,25 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import './categories.css'
-import {NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
+import {handleGetPosts} from "../../actions/posts";
+
 
 class Categories extends Component {
 
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+       this.props.dispatch(handleGetPosts(null, this.props.path));
+
+    }
+
     render() {
+        const {name, path} = this.props;
+
         return (
-            <div className='category'>
-                <div>{this.props.name}</div>
-            </div>
+            <Link to={`${path}`} className='category'>
+                <div>{name}</div>
+            </Link>
         )
     }
 }

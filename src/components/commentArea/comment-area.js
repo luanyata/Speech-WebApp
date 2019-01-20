@@ -7,16 +7,30 @@ import NewComment from "../newComment/newComment";
 
 class CommentArea extends Component {
 
+    state = {
+        comment: {}
+    };
+
     componentDidMount() {
         this.props.dispatch(handleGetComments(this.props.id))
     }
 
+
+    handleEditComment = (comment) => {
+        this.setState({
+            comment
+        });
+
+        console.log('comment', comment)
+    };
+
     render() {
         return (
             <div id='comment-area'>
-                <NewComment idPost={this.props.idPost}/>
+                <NewComment comment={this.state.comment} idPost={this.props.idPost}/>
                 {this.props.commentIds.map(idComment => (
-                    <Comment key={idComment} id={idComment} />))
+                    <Comment key={idComment} id={idComment}
+                             handleEditComment={this.handleEditComment}/>))
                 }
             </div>
         )

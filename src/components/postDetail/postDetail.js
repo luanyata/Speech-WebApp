@@ -9,24 +9,20 @@ class PostDetail extends Component {
     render() {
         return (
             <div>
-                <Post id={this.props.id}/>
-                <CommentArea id={this.props.id}/>
+                <Post id={this.props.postId}/>
+                <CommentArea id={this.props.postId}/>
 
             </div>
         )
     }
-
 }
 
-
-function mapToStateProps({authedUser}, props) {
-
-    const {id} = props.match.params;
+function mapToStateProps({authedUser, posts}, props) {
+    const postId = props.match.params.id;
 
     return {
-        id,
+        postId,
     }
-
 }
 
 export default connect(mapToStateProps)(PostDetail)

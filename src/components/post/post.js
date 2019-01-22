@@ -56,11 +56,6 @@ class Post extends Component {
                 <div hidden={disableAction}>
                     <FaTrash className='delete-comment' onClick={this.handleDelete}/>
                 </div>
-                <div hidden={disableAction}>
-                    <Link to={`edit/${category}/${id}/`}>
-                        <FaEdit/>
-                    </Link>
-                </div>
             </div>
         );
     }

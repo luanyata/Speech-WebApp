@@ -64,9 +64,9 @@ function editComment(comment) {
     }
 }
 
-export function handleEditComment(oldComment) {
+export function handleEditComment(editedComment) {
     return (dispatch) => {
-        return EditComment(oldComment)
+        return EditComment(editedComment)
             .then(comment => dispatch(editComment(comment)))
     }
 }

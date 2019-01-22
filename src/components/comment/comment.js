@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {FaAngleDown, FaAngleUp, FaEdit, FaTrash} from "react-icons/fa";
 import {handleDecreaseCommentVote, handleDeleteComment, handleIncreaseCommentVote} from "../../actions/comments";
 import './comment.css'
-import {Link} from "react-router-dom";
+import CommentModal from '../../utils/modal'
 
 
 class Comment extends Component {
@@ -22,6 +22,7 @@ class Comment extends Component {
         dispatch(handleDecreaseCommentVote(comment.id))
     };
 
+
     handleDelete = () => {
         const {dispatch, comment} = this.props;
         dispatch(handleDeleteComment(comment.id))
@@ -29,7 +30,7 @@ class Comment extends Component {
 
     render() {
 
-        const {comment, disableAction, handleEditComment} = this.props;
+        const {comment, disableAction} = this.props;
 
         const {author, body, timestamp, voteScore} = comment;
 
@@ -51,9 +52,10 @@ class Comment extends Component {
                 <div hidden={disableAction}>
                     <FaTrash className='delete-comment' onClick={this.handleDelete}/>
                 </div>
-                <Link to={`/edit-comment/${comment.id}`} hidden={disableAction}>
-                    <FaEdit onClick={() => handleEditComment(comment)}/>
-                </Link>
+                <CommentModal id={comment.id}/>
+                <div hidden={disableAction}>
+
+                </div>
             </div>
         )
     }

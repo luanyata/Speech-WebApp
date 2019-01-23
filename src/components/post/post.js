@@ -4,6 +4,7 @@ import './post.css'
 import {FaAngleDown, FaAngleUp, FaCommentDots, FaTrash} from "react-icons/fa";
 import {handleDecreaseVote, handleDeletePost, handleIncreaseVote} from "../../actions/post";
 import {Link} from "react-router-dom";
+import PostModal from "../../utils/modalPost";
 
 
 class Post extends Component {
@@ -56,6 +57,7 @@ class Post extends Component {
                 <div hidden={disableAction}>
                     <FaTrash className='delete-comment' onClick={this.handleDelete}/>
                 </div>
+                <PostModal id={id}/>
             </div>
         );
     }

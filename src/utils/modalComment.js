@@ -49,7 +49,7 @@ class CommentModal extends Component {
 
     render() {
         const {open, textComment} = this.state;
-        const {disableAction, comment} = this.props;
+        const {disableAction} = this.props;
 
         return (
             <div hidden={disableAction}>

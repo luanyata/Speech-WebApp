@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {FaAngleDown, FaAngleUp, FaEdit, FaTrash} from "react-icons/fa";
+import {FaAngleDown, FaAngleUp, FaTrash} from "react-icons/fa";
 import {handleDecreaseCommentVote, handleDeleteComment, handleIncreaseCommentVote} from "../../actions/comments";
 import './comment.css'
-import CommentModal from '../../utils/modal'
+import CommentModal from '../../utils/modalComment'
 
 
 class Comment extends Component {

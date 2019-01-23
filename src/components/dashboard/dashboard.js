@@ -3,23 +3,16 @@ import {connect} from 'react-redux'
 import Categories from '../categories/categories'
 import Post from "../post/post"
 import './dashboard.css'
-import {handleGetPosts, handleGetPostsByCategory} from "../../actions/posts";
+import {handleGetPosts} from "../../actions/posts";
 import {bindActionCreators} from "redux";
 
 class Dashboard extends Component {
 
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log(prevProps, prevState, snapshot);
-        if (this.props.location.pathname !== prevProps.location.pathname) {
-            this.props.dispatch(handleGetPostsByCategory(this.props.path));
-        }
-    }
-
     handleOrderBy = (e) => {
         e.preventDefault();
         console.log(e.target.value);
-        const {handleGetPosts, category} = this.props;
+        const {handleGetPosts} = this.props;
 
         handleGetPosts(e.target.value)
     };
@@ -27,7 +20,7 @@ class Dashboard extends Component {
     render() {
         return (
             <div>
-                <div id='categories'>
+                <div className='categories'>
                     <Categories/>
                 </div>
 
@@ -53,7 +46,7 @@ class Dashboard extends Component {
     }
 }
 
-function mapStateToProps({posts, categories}) {
+function mapStateToProps({posts}) {
     return {
         postIds: Object.keys(posts).map(key => posts[key].id)
             .sort((a, b) => (b.timestamp - a.timestamp)),

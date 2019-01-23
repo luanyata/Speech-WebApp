@@ -7,20 +7,13 @@ import {handleGetCategories} from "../../actions/categories";
 
 class Categories extends Component {
 
-
     componentDidMount() {
-        this.props.dispatch(handleGetCategories())
-    }
-
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log(this.props, prevProps, prevState, snapshot);
+        this.props.dispatch(handleGetCategories());
     }
 
     render() {
         return (
             <Fragment>
-
                 {this.props.categories.map(category =>
                     <Link to={category.path} key={category.name} className='category'>
                         <div>{category.name}</div>

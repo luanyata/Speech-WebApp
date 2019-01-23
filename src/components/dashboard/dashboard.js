@@ -8,6 +8,10 @@ import {bindActionCreators} from "redux";
 
 class Dashboard extends Component {
 
+    componentDidMount() {
+        const {handleGetPosts} = this.props;
+        handleGetPosts('');
+    }
 
     handleOrderBy = (e) => {
         e.preventDefault();

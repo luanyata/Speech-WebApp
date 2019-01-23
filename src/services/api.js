@@ -4,7 +4,7 @@ const url = 'http://localhost:3001';
 const headers = {
     'Accept': 'application/json',
     'Content-type': 'application/json',
-    'Authorization': Math.random().toString(36).substr(-8)
+    'Authorization': 'luanyata'
 };
 
 

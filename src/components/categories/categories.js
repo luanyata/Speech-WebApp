@@ -1,31 +1,40 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import './categories.css'
 import {Link} from "react-router-dom";
-import {handleGetPosts} from "../../actions/posts";
+import {handleGetCategories} from "../../actions/categories";
 
 
 class Categories extends Component {
 
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-       this.props.dispatch(handleGetPosts(null, this.props.path));
+    componentDidMount() {
+        this.props.dispatch(handleGetCategories())
+    }
 
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log(this.props, prevProps, prevState, snapshot);
     }
 
     render() {
-        const {name, path} = this.props;
-
         return (
-            <Link to={`${path}`} className='category'>
-                <div>{name}</div>
-            </Link>
+            <Fragment>
+
+                {this.props.categories.map(category =>
+                    <Link to={category.path} key={category.name} className='category'>
+                        <div>{category.name}</div>
+                    </Link>
+                )}
+            </Fragment>
         )
     }
 }
 
-function matStateToProps({categories}, {id}) {
-    return categories[id]
+function matStateToProps({categories}) {
+    return {
+        categories
+    }
 
 }
 

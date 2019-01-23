@@ -1,19 +1,30 @@
-import {getPosts as GetPosts} from "../services/api";
+import {
+    getPosts as GetPosts,
+    getPostsByCategory as GetPostsByCategory
+} from "../services/api";
 
 export const GET_POSTS = 'GET_POSTS';
 
-export function getPosts(posts, orderBy, category) {
+export function getPosts(posts, orderBy) {
     return {
         type: GET_POSTS,
         posts,
         orderBy,
-        category
     }
 }
 
-export function handleGetPosts(orderBy, category = null) {
+export function handleGetPosts(orderBy) {
     return (dispatch) => {
         return GetPosts()
-            .then(posts => dispatch(getPosts(posts, orderBy, category)))
+            .then(posts => dispatch(getPosts(posts, orderBy)))
     }
+}
+
+
+export function handleGetPostsByCategory(category,orderBy) {
+    return (dispatch) => {
+        return GetPostsByCategory(category)
+            .then(posts => dispatch(getPosts(posts,orderBy)))
+    }
+
 }

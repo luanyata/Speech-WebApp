@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import './post.css'
-import {FaAngleDown, FaAngleUp, FaCommentDots, FaEdit, FaTrash} from "react-icons/fa";
+import {FaAngleDown, FaAngleUp, FaCommentDots, FaTrash} from "react-icons/fa";
 import {handleDecreaseVote, handleDeletePost, handleIncreaseVote} from "../../actions/post";
 import {Link} from "react-router-dom";
 

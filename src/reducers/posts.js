@@ -2,6 +2,7 @@ import {GET_POSTS} from "../actions/posts";
 import {INCREASE_VOTE, DECREASE_VOTE, ADD_POST, GET_POST, DELETE_POST, EDIT_POST} from "../actions/post";
 
 export default function (state = {}, action) {
+    console.log(action.orderBy, '><><><><><>< action');
     switch (action.type) {
         case ADD_POST:
             return state.concat([action.post]);

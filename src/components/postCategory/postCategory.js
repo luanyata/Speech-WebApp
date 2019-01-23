@@ -18,7 +18,7 @@ class PostCategory extends Component {
         e.preventDefault();
         console.log(e.target.value);
 
-        this.props.dispatch(handleGetPostsByCategory(e.target.value))
+        this.props.dispatch(handleGetPostsByCategory(this.state.category, e.target.value))
     };
 
     componentDidUpdate(prevProps, prevState, snapshot) {

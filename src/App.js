@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {Switch, BrowserRouter as Router, Route} from 'react-router-dom'
 import './App.css';
 import {connect} from 'react-redux'
 import {handleInitialData} from "./actions/shared";
@@ -26,10 +26,13 @@ class App extends Component {
                             ? null
                             : <div>
                                 <Route path='/' exact component={Dashboard}/>
-                                <Route path='/new-post/' exact component={NewPost}/>
                                 <Route path='/edit/:category/:id/' exact component={NewPost}/>
                                 <Route path='/:category/:id' exact component={PostDetail}/>
-                                <Route path='/:category/' exact component={PostCategory}/>
+                                <Switch>
+                                    <Route path='/new-post/' exact component={NewPost}/>
+                                    <Route path='/:category/' exact component={PostCategory}/>
+                                </Switch>
+
                             </div>
                         }
                     </div>

@@ -56,7 +56,7 @@ class PostCategory extends Component {
                         <li key={id}>
                             <Post id={id}/>
                         </li>
-                    )) : <div>:'( </div>}
+                    )) : <div>:'(  Não há post nessa Categoria</div>}
 
                 </ul>
             </div>

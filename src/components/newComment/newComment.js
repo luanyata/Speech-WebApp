@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import './newComment.css'
 import {handleAddComment, handleEditComment} from "../../actions/comments";
+import {handleGetPost} from "../../actions/post";
+import {handleGetPosts} from "../../actions/posts";
 
 class NewComment extends Component {
 
@@ -56,13 +58,15 @@ class NewComment extends Component {
             };
 
             this.props.dispatch(handleAddComment(comment))
+                .then(() => this.props.dispatch(handleGetPosts('')))
                 .then(() => {
                     comment = {};
                     this.setState(() => ({
                         text: ''
-                    }))
+                    }));
                 });
         }
+
 
         this.setState({
             id: '',

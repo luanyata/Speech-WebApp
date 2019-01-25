@@ -75,8 +75,6 @@ class PostModal extends Component {
 }
 
 function mapToStateProps({posts, authedUser}, {id}) {
-    console.log(id);
-
     let post = posts.find(pos => pos.id === id);
 
     let disableAction = post.author !== authedUser;

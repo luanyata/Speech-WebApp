@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {Redirect} from "react-router-dom";
 import './post.css'
 import {FaAngleDown, FaAngleUp, FaCommentDots, FaTrash} from "react-icons/fa";
 import {handleDecreaseVote, handleDeletePost, handleIncreaseVote} from "../../actions/post";
@@ -31,16 +32,22 @@ class Post extends Component {
 
     render() {
 
+
+        if (this.props.post === undefined) {
+            return <Redirect to='/not-found'/>
+        }
+
         const {post, disableAction} = this.props;
 
-        const {id, title, body, voteScore, commentCount, timestamp, category} = post;
+        const {id, title, body, author, voteScore, commentCount, timestamp, category} = post;
 
         return (
             <div className='post'>
                 <Link to={`${category}/${id}`}>
-                    <h3>{title}</h3>
+                    <span><span className='title-post'>{title}</span> -  <small>by: {author}</small></span>
                 </Link>
                 <div>{body}</div>
+
                 <div className='footer-post'>
                     <FaAngleUp data-like='like' onClick={this.handleLike} className='like'/>
                     <small className='vote-score'>{voteScore}</small>
@@ -67,7 +74,10 @@ function mapStateToProps({authedUser, posts}, {id}) {
 
     const post = posts.find(post => post.id === id);
 
-    let disableAction = post.author !== authedUser;
+    let disableAction = true;
+
+    if (post)
+        disableAction = post.author !== authedUser;
 
     return {
         authedUser,

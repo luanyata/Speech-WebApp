@@ -4,6 +4,7 @@ import {FaAngleDown, FaAngleUp, FaTrash} from "react-icons/fa";
 import {handleDecreaseCommentVote, handleDeleteComment, handleIncreaseCommentVote} from "../../actions/comments";
 import './comment.css'
 import CommentModal from '../../utils/modalComment'
+import {handleGetPost} from "../../actions/post";
 
 
 class Comment extends Component {
@@ -26,6 +27,7 @@ class Comment extends Component {
     handleDelete = () => {
         const {dispatch, comment} = this.props;
         dispatch(handleDeleteComment(comment.id))
+            .then(e => dispatch(handleGetPost(e.comment.parentId)));
     };
 
     render() {
@@ -62,7 +64,7 @@ class Comment extends Component {
 }
 
 
-function mapToStateProps({authedUser, posts, comments}, {id}) {
+function mapToStateProps({authedUser,  comments}, {id}) {
     let comment = comments[id];
 
     let disableAction = comment.author !== authedUser;

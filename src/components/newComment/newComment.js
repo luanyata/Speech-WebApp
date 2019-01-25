@@ -15,8 +15,6 @@ class NewComment extends Component {
 
 
     componentDidMount() {
-        console.log(this.props.comment, ' comment props');
-
         if (this.props.comment) {
             const {id, body, author, timestamp, parentId} = this.props.comment;
 

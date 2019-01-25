@@ -8,6 +8,7 @@ import LoadingBar from 'react-redux-loading'
 import NewPost from "./components/newPost/NewPost";
 import PostDetail from "./components/postDetail/postDetail";
 import PostCategory from './components/postCategory/postCategory'
+import NotFound from './components/notFound';
 import Nav from "./components/nav/Nav";
 
 class App extends Component {
@@ -25,14 +26,15 @@ class App extends Component {
                         {this.props.loading === true
                             ? null
                             : <div>
-                                <Route path='/' exact component={Dashboard}/>
-                                <Route path='/edit/:category/:id/' exact component={NewPost}/>
-                                <Route path='/:category/:id' exact component={PostDetail}/>
                                 <Switch>
+                                    <Route path='/' exact component={Dashboard}/>
+                                    <Route path='/edit/:category/:id/' exact component={NewPost}/>
+                                    <Route path='/:category/:id' exact component={PostDetail}/>
+                                    <Route path='/not-found' exact component={NotFound}/>
                                     <Route path='/new-post/' exact component={NewPost}/>
                                     <Route path='/:category/' exact component={PostCategory}/>
-                                </Switch>
 
+                                </Switch>
                             </div>
                         }
                     </div>

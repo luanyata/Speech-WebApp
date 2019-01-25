@@ -29,10 +29,6 @@ class CommentModal extends Component {
             .then(this.onCloseModal())
     };
 
-    componentDidMount() {
-        console.log(this.props.id, 'ID Comment');
-    }
-
     onOpenModal = () => {
         this.setState({
             open: true,
